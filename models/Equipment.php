@@ -89,9 +89,15 @@ class Equipment {
     }
 
     public static function get($fields){
-        return self::modify_results(Database::execute(
-            "SELECT * FROM " . Database::$DATABASE_NAME . ".equipmenttable WHERE id=" . $fields['id']
-        ));
+        if (isset($fields['id'])){
+            return self::modify_results(Database::execute(
+                "SELECT * FROM " . Database::$DATABASE_NAME . ".equipmenttable WHERE id=" . $fields['id']
+            ));
+        } else if (isset($fields['assetTag'])){
+            return self::modify_results(Database::execute(
+                "SELECT * FROM " . Database::$DATABASE_NAME . ".equipmenttable WHERE assetTag ='" . $fields['assetTag'] . "'"
+            ));
+        }
     }
 
     private static function modify_results($sql_results){

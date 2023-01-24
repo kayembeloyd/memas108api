@@ -3,7 +3,7 @@
 include_once "models/Equipment.php";
 include_once "models/DatabaseLog.php";
 
-class EquipmentsController {
+class EquipmentController {
     static function index(){
         $fields = array();
 
@@ -19,6 +19,16 @@ class EquipmentsController {
         } 
 
         echo json_encode($equipment);
+    }
+
+    static function show($asset_tag){
+        $fields = array();
+        $fields['assetTag'] = $asset_tag;
+        $equipment = Equipment::get($fields);
+
+        if (count($equipment) > 0) echo json_encode($equipment[0]);
+
+        return json_decode(json_encode("{}"));
     }
   
     static function create(){
