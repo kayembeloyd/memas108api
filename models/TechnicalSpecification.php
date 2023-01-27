@@ -23,10 +23,10 @@ class TechnicalSpecification {
 
     public static function update($fields){
         Database::execute("UPDATE " . Database::$DATABASE_NAME . ".technicalspecificationstable SET " . 
-            "name = " . "'" . $fields['name'] . "'," .
-            "value = " . "'" . $fields['value'] . "'," .
-            "equipmentId =" . $fields['equipmentId'] . "," .
-            "uploaded = " . $fields['uploaded'] . "," . 
+            "name=" . "'" . $fields['name'] . "'," .
+            "value=" . "'" . $fields['value'] . "'," .
+            "equipmentId=" . $fields['equipmentId'] . "," .
+            "uploaded=" . $fields['uploaded'] . " " . 
             "WHERE id=" . $fields['id']
         );
 

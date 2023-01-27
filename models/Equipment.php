@@ -51,17 +51,17 @@ class Equipment {
 
     public static function update($fields){
         Database::execute("UPDATE " . Database::$DATABASE_NAME . ".equipmenttable SET " . 
-            "name = " . "'" . $fields['name'] . "'," .
-            "assetTag = " . "'" . $fields['assetTag'] . "'," .
-            "departmentId =" . $fields['departmentId'] . "," .
-            "make = " . "'" . $fields['make'] . "'," .
-            "model = " . "'" . $fields['model'] . "'," .
-            "serialNumber = " . "'" . $fields['serialNumber'] . "'," .
-            "commissionDate = " . "'" . $fields['commissionDate'] . "'," .
-            "lastMaintenanceDate = " . "'" . $fields['lastMaintenanceDate'] . "'," .
-            "nextMaintenanceDate = " . "'" . $fields['nextMaintenanceDate'] . "'," .
-            "statusOptionId = " . $fields['statusOptionId'] . "," .
-            "uploaded = " . $fields['uploaded'] . "," . 
+            "name=" . "'" . $fields['name'] . "'," .
+            "assetTag=" . "'" . $fields['assetTag'] . "'," .
+            "departmentId=" . $fields['departmentId'] . "," .
+            "make=" . "'" . $fields['make'] . "'," .
+            "model=" . "'" . $fields['model'] . "'," .
+            "serialNumber=" . "'" . $fields['serialNumber'] . "'," .
+            "commissionDate=" . "'" . $fields['commissionDate'] . "'," .
+            "lastMaintenanceDate=" . "'" . $fields['lastMaintenanceDate'] . "'," .
+            "nextMaintenanceDate=" . "'" . $fields['nextMaintenanceDate'] . "'," .
+            "statusOptionId=" . $fields['statusOptionId'] . "," .
+            "uploaded=" . $fields['uploaded'] . " " . 
             "WHERE id=" . $fields['id']
         );
 
