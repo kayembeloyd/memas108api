@@ -15,6 +15,13 @@ class MaintenanceLogsController {
             $fields2 = array(); 
             $fields2['maintenanceLogId'] = $maintenance_logs[$i]['id'];
             $maintenance_logs[$i]['maintenanceLogData'] = MaintenanceLogData::all($fields2);
+
+            $fields3 = array();
+            $fields3['id'] = $maintenance_logs[$i]['equipmentId'];
+            $maintenance_logs[$i]['equipment'] = Equipment::get($fields3);
+            
+            if (count($maintenance_logs[$i]['equipment']) > 0) 
+                $maintenance_logs[$i]['equipment'] = $maintenance_logs[$i]['equipment'][0]; 
         } 
 
         echo json_encode($maintenance_logs);

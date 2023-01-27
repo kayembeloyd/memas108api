@@ -54,6 +54,7 @@ class MaintenanceLog {
                 $modified_object['equipmentId'] = $object->equipmentId;
                 $modified_object['date'] = $object->date;
                 $modified_object['doneByUserId'] = $object->doneByUserId;
+                $modified_object['type'] = $object->type;
                 $modified_object['description'] = $object->description;
                 $modified_object['uploaded'] = $object->uploaded; 
                 array_push($object_array, $modified_object);

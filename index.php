@@ -45,11 +45,15 @@ switch($_SERVER['REQUEST_METHOD']){
         Route::add('/equipment/.+', function($asset_tag) { EquipmentController::show($asset_tag); });
         Route::add('/maintenance-logs', function() { MaintenanceLogsController::index(); });
         Route::add('/database/update', function() { DatabaseController::update(); });
+        // Route::add('/departments', function() { DepartmentsController::index(); });          // TO-DO
+        // Route::add('/departments/.+', function($id) { DepartmentsController::show($id); });  // TO-DO
         break;
     case 'POST':
         Route::add('/equipment', function() { EquipmentController::create(); }); 
         Route::add('/equipment/update', function() { EquipmentController::update(); }); 
         Route::add('/maintenance-logs', function() { MaintenanceLogsController::create(); });
+        // Route::add('/departments', function() { DepartmentsController::create(); });         // TO-DO
+        // Route::add('/departments/.+/delete', function() {DepartmentsController::delete(); });// TO-DO
         break;
     default:
         echo 'unsupported method';
