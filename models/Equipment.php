@@ -88,6 +88,12 @@ class Equipment {
         ));
     }
 
+    public static function paginateSchedule($fields){ 
+        return self::modify_results(Database::execute(
+            "SELECT * FROM " . Database::$DATABASE_NAME . ".equipmenttable WHERE nextMaintenanceDate > '". $fields['nowDate'] . "' ORDER BY nextMaintenanceDate ASC" . " LIMIT " . $fields['size'] . " OFFSET " . ($fields['page'] - 1) * $fields['size'] 
+        ));
+    }
+
     public static function get($fields){
         if (isset($fields['id'])){
             return self::modify_results(Database::execute(

@@ -4,6 +4,7 @@ include_once "route.php";
 
 include_once "controllers/EquipmentController.php";
 include_once "controllers/MaintenanceLogsController.php";
+include_once "controllers/MaintenanceScheduleController.php";
 include_once "controllers/DatabaseController.php";
 
 /**
@@ -44,6 +45,7 @@ switch($_SERVER['REQUEST_METHOD']){
         Route::add('/equipment', function() { EquipmentController::index(); });
         Route::add('/equipment/.+', function($asset_tag) { EquipmentController::show($asset_tag); });
         Route::add('/maintenance-logs', function() { MaintenanceLogsController::index(); });
+        Route::add('/maintenance-schedule', function() { MaintenanceScheduleController::index(); });
         Route::add('/database/update', function() { DatabaseController::update(); });
         // Route::add('/departments', function() { DepartmentsController::index(); });          // TO-DO
         // Route::add('/departments/.+', function($id) { DepartmentsController::show($id); });  // TO-DO
