@@ -7,9 +7,10 @@ class MaintenanceScheduleController {
 
         $fields['size'] = isset($_REQUEST['size']) ? $_REQUEST['size'] : 5;
         $fields['page'] = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1;
-        $fields['nowDate'] = isset($_REQUEST['nowDate']) ? $_REQUEST['nowDate']: '2023-01-28';
+        $fields['nowDate'] = isset($_REQUEST['nowDate']) ? $_REQUEST['nowDate'] : '2023-01-28';
+        $fields['overdue'] = isset($_REQUEST['overdue']);
  
-        $equipment = Equipment::paginateSchedule($fields);
+        $equipment = $fields['overdue'] ? Equipment::paginateOverdueSchedule($fields) : Equipment::paginateSchedule($fields);
 
         for ($i=0; $i < count($equipment); $i++) { 
             $fields2 = array(); 

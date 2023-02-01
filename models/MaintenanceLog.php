@@ -40,7 +40,7 @@ class MaintenanceLog {
 
     public static function paginate($fields){
         return self::modify_results(Database::execute(
-            "SELECT * FROM " . Database::$DATABASE_NAME . ".maintenancelogstable LIMIT " . $fields['size'] . " OFFSET " . ($fields['page'] - 1) * $fields['size']
+            "SELECT * FROM " . Database::$DATABASE_NAME . ".maintenancelogstable ". "ORDER BY date DESC"  ." LIMIT " . $fields['size'] . " OFFSET " . ($fields['page'] - 1) * $fields['size']
         ));
     }
 

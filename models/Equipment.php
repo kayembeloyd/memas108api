@@ -90,7 +90,13 @@ class Equipment {
 
     public static function paginateSchedule($fields){ 
         return self::modify_results(Database::execute(
-            "SELECT * FROM " . Database::$DATABASE_NAME . ".equipmenttable WHERE nextMaintenanceDate > '". $fields['nowDate'] . "' ORDER BY nextMaintenanceDate ASC" . " LIMIT " . $fields['size'] . " OFFSET " . ($fields['page'] - 1) * $fields['size'] 
+            "SELECT * FROM " . Database::$DATABASE_NAME . ".equipmenttable WHERE nextMaintenanceDate >= '". $fields['nowDate'] . "' ORDER BY nextMaintenanceDate ASC" . " LIMIT " . $fields['size'] . " OFFSET " . ($fields['page'] - 1) * $fields['size'] 
+        ));
+    }
+
+    public static function paginateOverdueSchedule($fields){
+        return self::modify_results(Database::execute(
+            "SELECT * FROM " . Database::$DATABASE_NAME . ".equipmenttable WHERE nextMaintenanceDate < '". $fields['nowDate'] . "' ORDER BY nextMaintenanceDate ASC" . " LIMIT " . $fields['size'] . " OFFSET " . ($fields['page'] - 1) * $fields['size'] 
         ));
     }
 
