@@ -83,8 +83,21 @@ class Equipment {
     }
     
     public static function paginate($fields){
+        // Filtering 
+        $filterPhrase['search'] = $fields['filter']['search'] == '' ? '' : "(name LIKE '%" . $fields['filter']['search'] . "%')";
+        $filterPhrase['department'] = $fields['filter']['department'] == '' ? '' : "(departmentId = " . $fields['filter']['department'] . ")";
+        $filterPhrase['status'] = $fields['filter']['status'] == '' ? '' : "(statusOptionId = " . $fields['filter']['status'] . ")";
+        $filterPhrase['make'] = $fields['filter']['make'] == '' ? '' : "(make = '" . $fields['filter']['make'] . "')";
+        $filterPhrase['model'] = $fields['filter']['model'] == '' ? '' : "(model = '" . $fields['filter']['model'] . "')";
+
+        $filters = '';
+        foreach ($filterPhrase as $phrase)  $phrase != '' ? $filters .= $phrase . " AND " : null;
+         
+        $filters = $filters == '' ? '': 'WHERE ' . substr($filters, 0, strlen($filters) - 5);
+        // Filtering 
+
         return self::modify_results(Database::execute(
-            "SELECT * FROM " . Database::$DATABASE_NAME . ".equipmenttable LIMIT " . $fields['size'] . " OFFSET " . ($fields['page'] - 1) * $fields['size']
+            "SELECT * FROM " . Database::$DATABASE_NAME . ".equipmenttable " . $filters . " LIMIT " . $fields['size'] . " OFFSET " . ($fields['page'] - 1) * $fields['size']
         ));
     }
 
