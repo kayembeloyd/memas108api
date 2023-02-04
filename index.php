@@ -6,6 +6,7 @@ include_once "controllers/EquipmentController.php";
 include_once "controllers/MaintenanceLogsController.php";
 include_once "controllers/MaintenanceScheduleController.php";
 include_once "controllers/DatabaseController.php";
+include_once "controllers/UsersController.php";
 
 /**
  * -----------------------------------------------
@@ -56,6 +57,9 @@ switch($_SERVER['REQUEST_METHOD']){
         Route::add('/maintenance-logs', function() { MaintenanceLogsController::create(); });
         // Route::add('/departments', function() { DepartmentsController::create(); });         // TO-DO
         // Route::add('/departments/.+/delete', function() {DepartmentsController::delete(); });// TO-DO
+        Route::add('/users', function() {UsersController::create(); });
+        Route::add('/users/login', function() { UsersController::login(); });
+
         break;
     default:
         echo 'unsupported method';
