@@ -39,8 +39,28 @@ class MaintenanceLog {
     }
 
     public static function paginate($fields){
+        // Filtering 
+        $filterPhrase['search'] = $fields['filter']['search'] == '' ? '' : "(name LIKE '%" . $fields['filter']['search'] . "%')";
+        $filterPhrase['department'] = $fields['filter']['department'] == '' ? '' : "(departmentId = " . $fields['filter']['department'] . ")";
+        $filterPhrase['status'] = $fields['filter']['status'] == '' ? '' : "(statusOptionId = " . $fields['filter']['status'] . ")";
+        $filterPhrase['make'] = $fields['filter']['make'] == '' ? '' : "(make = '" . $fields['filter']['make'] . "')";
+        $filterPhrase['model'] = $fields['filter']['model'] == '' ? '' : "(model = '" . $fields['filter']['model'] . "')";
+        $filterPhrase['equipment'] = $fields['filter']['equipment'] == '' ? '' : "(equipmentId = " . $fields['filter']['equipment'] . ")";
+
+        $filters = '';
+        foreach ($filterPhrase as $phrase)  $phrase != '' ? $filters .= $phrase . " AND " : null;
+         
+        $filters = $filters == '' ? '': ' WHERE ' . substr($filters, 0, strlen($filters) - 5);
+        // Filtering 
+ 
         return self::modify_results(Database::execute(
-            "SELECT * FROM " . Database::$DATABASE_NAME . ".maintenancelogstable ". "ORDER BY date DESC"  ." LIMIT " . $fields['size'] . " OFFSET " . ($fields['page'] - 1) * $fields['size']
+            "SELECT * FROM " . 
+                Database::$DATABASE_NAME . ".maintenancelogstable INNER JOIN " . 
+                Database::$DATABASE_NAME . ".equipmenttable ON " . 
+                Database::$DATABASE_NAME . ".maintenancelogstable.equipmentId=" . 
+                Database::$DATABASE_NAME . ".equipmenttable.id" . 
+                $filters . " ORDER BY date DESC" . " LIMIT " . 
+                $fields['size'] . " OFFSET " . ($fields['page'] - 1) * $fields['size']
         ));
     }
 

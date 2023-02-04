@@ -9,6 +9,13 @@ class MaintenanceLogsController {
         $fields['size'] = isset($_REQUEST['size']) ? $_REQUEST['size'] : 5;
         $fields['page'] = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1;
 
+        $fields['filter']['search'] = isset($_REQUEST['search']) ? $_REQUEST['search'] : '';
+        $fields['filter']['department'] = isset($_REQUEST['department']) ? $_REQUEST['department'] : '';
+        $fields['filter']['status'] = isset($_REQUEST['status']) ? $_REQUEST['status'] : '';
+        $fields['filter']['make'] = isset($_REQUEST['make']) ? $_REQUEST['make'] : '';
+        $fields['filter']['model'] = isset($_REQUEST['model']) ? $_REQUEST['model'] : '';
+        $fields['filter']['equipment'] = isset($_REQUEST['equipment']) ? $_REQUEST['equipment'] : '';
+        
         $maintenance_logs = MaintenanceLog::paginate($fields);
 
         for ($i=0; $i < count($maintenance_logs); $i++) { 
