@@ -31,6 +31,9 @@ class UsersController {
         $fields['password'] = isset($_POST['password']) ? $_POST['password'] : ''; 
 
         if (count($user) > 0 && password_verify($fields['password'], $user[0]['password'])){
+            $fields['id'] = $user[0]['id'];
+            $user = User::get($fields);
+
             $response['status'] = 'success';
             $response['reason'] = 'log in successful';
             $response['user'] = $user[0];
@@ -40,6 +43,18 @@ class UsersController {
         }
 
         echo (json_encode($response));
+    }
+
+    static function get($id){
+        $fields = array();
+        $fields['id'] = $id;
+        $user = User::get($fields);
+
+        if (count($user) > 0) {
+            echo json_encode($user[0]);
+        }
+
+        return json_decode(json_encode("{}"));
     }
 
     private static function fields(){

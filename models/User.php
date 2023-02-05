@@ -22,10 +22,16 @@ class User {
     public static function show($fields){
         return self::modify_results(Database::execute(
             "SELECT * FROM " . Database::$DATABASE_NAME . ".userstable WHERE username='" . $fields['username'] . "'"
-        ));
+        ), true);
     }
 
-    private static function modify_results($sql_results){
+    public static function get($fields){
+        return self::modify_results(Database::execute(
+            "SELECT * FROM " . Database::$DATABASE_NAME . ".userstable WHERE id=" . $fields['id']
+        ), false);
+    }
+
+    private static function modify_results($sql_results, $show_password){
         $object_array = array();
         
         if ($sql_results){
@@ -36,7 +42,7 @@ class User {
                 $modified_object['avatarId'] = $object->avatarId;
                 $modified_object['name'] = $object->name;
                 $modified_object['position'] = $object->position;
-                $modified_object['password'] = $object->password;
+                if ($show_password) $modified_object['password'] = $object->password;
                 array_push($object_array, $modified_object);
             }
         }

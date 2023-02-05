@@ -50,6 +50,7 @@ switch($_SERVER['REQUEST_METHOD']){
         Route::add('/database/update', function() { DatabaseController::update(); });
         // Route::add('/departments', function() { DepartmentsController::index(); });          // TO-DO
         // Route::add('/departments/.+', function($id) { DepartmentsController::show($id); });  // TO-DO
+        Route::add('/users/.+', function($id) { UsersController::get($id); });
         break;
     case 'POST':
         Route::add('/equipment', function() { EquipmentController::create(); }); 
