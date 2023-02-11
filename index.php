@@ -38,6 +38,8 @@ function cors() {
     }
 }
 
+date_default_timezone_set('Africa/Blantyre');
+
 cors();
 
 switch($_SERVER['REQUEST_METHOD']){
