@@ -25,9 +25,11 @@ class Equipment {
             . "'" . $fields['make'] . "',"
             . "'" . $fields['model']. "',"
             . "'" . $fields['serialNumber'] . "',"
-            . "'" . $fields['commissionDate'] . "',"
-            . "'" . $fields['lastMaintenanceDate'] . "'," 
-            . "'" . $fields['nextMaintenanceDate'] . "'," 
+            
+            . ($fields['commissionDate'] == '' ? "NULL" : ("'" . $fields['commissionDate'] . "'")) . "," 
+            . ($fields['lastMaintenanceDate'] == '' ? "NULL" : ("'" . $fields['lastMaintenanceDate'] . "'")) . ","
+            . ($fields['nextMaintenanceDate'] == '' ? "NULL" : ("'" . $fields['nextMaintenanceDate'] . "'")) . ","
+            
             . $fields['statusOptionId'] . "," 
             . 0 
             . ")"
