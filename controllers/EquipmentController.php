@@ -96,9 +96,11 @@ class EquipmentController {
         $fields['make'] = isset($_POST['make']) ? $_POST['make'] : '';
         $fields['model'] = isset($_POST['model']) ? $_POST['model'] : '';
         $fields['serialNumber'] = isset($_POST['serialNumber']) ? $_POST['serialNumber'] : '';
+        
         $fields['commissionDate'] = isset($_POST['commissionDate']) ? ($_POST['commissionDate'] == "Select Date" ? '' : $_POST['commissionDate']) : '';
         $fields['lastMaintenanceDate'] = isset($_POST['lastMaintenanceDate']) ? ($_POST['lastMaintenanceDate'] == "Select Date" ? '' : $_POST['lastMaintenanceDate']) : '';
         $fields['nextMaintenanceDate'] = isset($_POST['nextMaintenanceDate']) ? ($_POST['nextMaintenanceDate'] == "Select Date" ? '' : $_POST['nextMaintenanceDate']) : '';
+        
         $fields['statusOptionId'] = isset($_POST['statusOptionId']) ? $_POST['statusOptionId'] : '';
         $fields['uploaded'] = isset($_POST['uploaded']) ? $_POST['uploaded'] : '';
 
